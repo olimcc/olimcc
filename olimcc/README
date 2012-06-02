@@ -1,13 +1,8 @@
-# olimcc
+Olimcc.com
+==========
 
-FIXME: write description
+Run
+---
+From olimcc/
 
-## Usage
-
-FIXME: write
-
-## License
-
-Copyright (C) 2012 FIXME
-
-Distributed under the Eclipse Public License, the same as Clojure.
+`$ lein run`
