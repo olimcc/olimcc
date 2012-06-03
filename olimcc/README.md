@@ -3,6 +3,4 @@ Olimcc.com
 
 Run
 ---
-From olimcc/
-
-`$ lein run`
+	$ lein ring server

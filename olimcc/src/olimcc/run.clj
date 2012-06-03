@@ -4,5 +4,5 @@
 (use 'olimcc.core)
 
 (defn -main []
-  (run-jetty handler {:port 3000}))
+  (run-jetty app {:port 3000}))
 
