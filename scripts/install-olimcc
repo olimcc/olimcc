@@ -1,0 +1,10 @@
+#!/bin/sh
+
+APP=/var/lib/tomcat6/webapps/ROOT
+FILE=`find ~/apps/incoming/*.war | head -1`
+FILENAME=$(basename $FILE)
+
+echo "Installing WAR from: $FILE"
+sudo unzip -oq $FILE -d $APP
+
+mv $FILE ~/apps/complete/$FILENAME
