@@ -1,0 +1,185 @@
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: white;
+  font-family: 'Waiting for the Sunrise', arial, serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+margin: 1em 0px;
+ padding: 0;
+ font-weight: normal;
+ font-family: 'Waiting for the Sunrise', arial, serif;
+ }
+
+
+#container {
+  height: 100% ;
+  width: 100% ;
+  position: fixed;
+}
+
+#canvas {
+  height: 100% ;
+  margin: 0 auto;
+  text-align: left;
+  width: 100% ;
+}
+
+#content {
+  position: absolute;
+  top: 1px;
+  left: 150px;
+  color: white;
+  z-index: 100;
+  text-align: justify;
+  padding: 10px;
+  font-size: 20px;
+  font-family: 'Copse',
+  arial,
+  serif;
+}
+
+
+li {
+  list-style-type: none;
+  font-family: 'Waiting for the Sunrise',
+  arial,
+  serif;
+  font-size: 20px;
+  padding: 0px;
+  line-height: 26px;
+  text-align: center;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+  text-decoration: none;
+}
+
+#likeArrow {
+  position: absolute;
+  left: 65px;
+  top: 550px;
+}
+
+#locationArrow {
+  position: absolute;
+  left: 850px;
+  top: 30px;
+}
+
+#aboutMeArrow {
+  position: absolute;
+  left: 40px;
+  top: 0px;
+}
+
+#tinkeringArrow {
+  position: absolute;
+  left: 530px;
+  top: 420px;
+}
+
+#locationText {
+  top: 150px;
+  left: 920px;
+  width: 122px;
+
+}
+
+#likeText {
+  left: 90px;
+  top: 540px;
+  width: 200px;
+}
+
+.labelText {
+  width: 120px;
+  font-family: 'Waiting for the Sunrise',
+  arial,
+  serif;
+  font-size: 25px;
+  position: absolute;
+  line-height: 24px;
+}
+
+#aboutMeText {
+  left: 20px;
+  top: 80px;
+}
+
+#tinkeringText {
+  left: 560px;
+  top: 420px;
+}
+
+#contact {
+  position: absolute;
+  left: 270px;
+  top: 70px;
+  width: 150px;
+  font-size: 20px;
+  line-height: 22px;
+  font-family: 'Waiting for the Sunrise',
+  arial,
+  serif;
+  text-align: center;
+}
+
+#location {
+  position: fixed;
+  left: 620px;
+  top: 20px;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  padding: 10px 10px;
+}
+
+#tooltip {
+  position: absolute;
+  font-family: 'Waiting for the Sunrise',
+  arial,
+  serif;
+  left: 770px;
+  top: 394px;
+  width: 165px;
+  line-height: 20px;
+  text-align: center;
+}
+
+#work {
+  position: absolute;
+  left: 265px;
+  top: 325px;
+  width: 250px;
+  font-family: 'Waiting for the Sunrise',
+  arial,
+  serif;
+}
+
+#like {
+  left: 3px;
+  top: 250px;
+  position: absolute;
+  width: 180px;
+}
+
+#mapHolder {
+  width: 700px;
+  height: 700px;  
+}
+
+.mapRounded {
+  -moz-border-radius: 200px;
+  -webkit-border-radius: 200px;
+  -khtml-border-radius: 200px;
+  border-radius: 200px;
+}

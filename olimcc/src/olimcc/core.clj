@@ -9,7 +9,9 @@
    :body "Hello World"})
 
 (defroutes main-routes
-  (GET "/" [] (handler)))
+  (GET "/" [] (handler))
+  (route/resources "/" {:root "static"})
+  (route/not-found "Page not found"))
 
 (def app
   (handler/site main-routes))
