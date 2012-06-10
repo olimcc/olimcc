@@ -22,7 +22,7 @@ THE SOFTWARE.
 
 getJsonLoc = function() {
   var base = "http://maps.google.com/maps/api/staticmap?zoom=8&size=380x380&sensor=false";
-  $.getJSON("get.php",
+  $.getJSON("/location",
             {},
             function success(data){
               var name = data["features"][0]["properties"]["reverseGeocode"];
