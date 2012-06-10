@@ -38,9 +38,9 @@ getJsonLoc = function() {
 var allColours = [
    ["#6F30A0","#5D3978","#421068","#A063D0","#AD80D0",
    "#B62E8A","#893C70","#760F55","#DB60B2","#DB81BD",
-   "#4B39A5","#493F7C","#21126B","#7C6BD2","#9386D2"], 
+   "#4B39A5","#493F7C","#21126B","#7C6BD2","#9386D2"],
    ["#FF0000", "#BF3030", "#A60000", "#FF4040", "#FF7373",
-    "#FF7400", "#BF7130", "#A64B00", "#FF9640", "#FFB273", 
+    "#FF7400", "#BF7130", "#A64B00", "#FF9640", "#FFB273",
     "#CD0074", "#992667", "#85004B", "#E6399B", "#E667AF"],
    ["#2E16B1", "#3B2E84", "#180773", "#604BD8", "#8070D8",
     "#640CAB", "#582781", "#3F046F", "#9240D5", "#A468D5",
@@ -62,28 +62,28 @@ function randomNum(max) {
 
 // get our colour scheme
 var cols = allColours[randomNum(2)];
-  
+
 // get a random colour from our colour schemes, and
 // format it for raphael
 function getRdmColor() {
    return cols[randomNum(15)];
-  var red = Math.floor(Math.random() * 255); 
-  var green = Math.floor(Math.random() * 255); 
-  var blue = Math.floor(Math.random() * 255); 
+  var red = Math.floor(Math.random() * 255);
+  var green = Math.floor(Math.random() * 255);
+  var blue = Math.floor(Math.random() * 255);
    return 'rgb('+red+','+green+','+blue+')';
 }
 
-// get a random opacity for a circle  
+// get a random opacity for a circle
 function getRdmOpacity() {
   return Math.floor(Math.random() * 10 + 1)/10;
 }
-  
+
 // everything that needs to happen when the page loads
 window.onload = function () {
     // get our lat loc and render the image
     getJsonLoc();
-    
-    // draw our location arrow    
+
+    // draw our location arrow
     var locationArrow = document.getElementById('locationArrow');
     var ctx = locationArrow.getContext('2d');
     ctx.strokeStyle = "white";
@@ -134,12 +134,12 @@ window.onload = function () {
     ctx.moveTo(0,85);
     ctx.lineTo(5,100);
     ctx.stroke();
-    
+
     // start raphael
-    var paper = Raphael("canvas", "100%", "100%");      
-    
-    // draw our 150 circles  
-    var numCircles = 150;  
+    var paper = Raphael("canvas", "100%", "100%");
+
+    // draw our 150 circles
+    var numCircles = 150;
     var maxCircleRadius = 15;
     var path = "M " + screen.width / 2 + " " + screen.height / 2; // start our line from the middle of the page
     for (i = 0; i < numCircles; i++) {
@@ -178,7 +178,7 @@ window.onload = function () {
       clickme.node.onmouseout = function() {
         clickme.animate({"opacity":.4, "stroke-width":0}, 300);
       }
-      
+
       // click on the text or the circle to render content circles
       initText.node.onclick = function() {
         showCircles();
@@ -186,8 +186,8 @@ window.onload = function () {
       clickme.node.onclick = function() {
         showCircles();
       }
-      
-      // reduce the size of init circle, and 
+
+      // reduce the size of init circle, and
       // explode the size of our content circles
       // fade in our html
       function showCircles() {
@@ -198,18 +198,18 @@ window.onload = function () {
         friends.animate({r:170}, 1000, "elastic");
         $('#content').fadeIn(2000);
       }
-      
+
       // add four content circles and a tooltip circle
       about = paper.circle(493, 170, 20).attr({fill: getRdmColor(),
-                                               "stroke-opacity": 1}); 
+                                               "stroke-opacity": 1});
       like = paper.circle(560, 424, 20).attr({fill: getRdmColor(),
                                               "stroke-opacity": 1});
       friends = paper.circle(264, 367, 20).attr({fill: getRdmColor(),
-                                                 "stroke-opacity": 1});      
+                                                 "stroke-opacity": 1});
       tooltipTopLeft =paper.circle(1000, 450, 0).attr({fill: getRdmColor(),
                                                        "stroke-opacity": .7,
                                                        "stroke":"white",
-                                                       "stroke-width":4});            
+                                                       "stroke-width":4});
       map = paper.circle(820, 220, 20).attr({fill: getRdmColor(),
                                             "stroke-opacity": 1})
                                             .toFront();
@@ -221,7 +221,7 @@ window.onload = function () {
       hideTooltip = function() {
         tooltipTopLeft.animate({r:0}, 1200, "elastic");
       }
-      
+
       // parses an <a> tag to figure out if there's tooltip content
       // content can be determined by using:
       // ttfunc="aFunction" => calls the func in window scope
@@ -236,7 +236,7 @@ window.onload = function () {
         }
         return val;
       }
-      
+
       // handles hover on <a> tag, draws tooltip accordingly
       $('a').hover(
         function(){
@@ -245,9 +245,9 @@ window.onload = function () {
           showTooltip();
           _gaq.push(['_trackEvent', 'Links', 'Hover', $(this).attr('href')]);
         });
-      
+
       $('a').click(function() {
-          _gaq.push(['_trackEvent', 'Links', 'Click', $(this).attr('href')]);        
+          _gaq.push(['_trackEvent', 'Links', 'Click', $(this).attr('href')]);
       });
-      
+
 };
