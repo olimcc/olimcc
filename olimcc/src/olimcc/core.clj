@@ -2,8 +2,7 @@
   (:use [ring.util.response]
         [compojure.core]
         [olimcc.config :only (properties)])
-  (:require [clojure.java.io :as io]
-            [compojure.route :as route]
+  (:require [compojure.route :as route]
             [compojure.handler :as handler]
             [clj-http.client :as client]))
 
