@@ -7,10 +7,10 @@
             [compojure.handler :as handler]
             [clj-http.client :as client]))
 
-(defn handler []
+(defn handler [page]
   ;; doesn't seem to work:
   ;; (file-response "test.html" {:root "pages"})
-  (resource-response "index.html" {:root "pages"}))
+  (resource-response (str page ".html") {:root "pages"}))
 
 (defn get-location []
   (let [endpoint "https://www.google.com/latitude/apps/badge/api?type=json&user="
@@ -18,8 +18,9 @@
         (client/get (str endpoint user))))
 
 (defroutes main-routes
-  (GET "/" [] (handler))
   (GET "/location" [] (get-location))
+  (GET "/" [] (handler "index"))
+  (GET "/:page" [page] (handler page))
   (route/resources "/static" {:root "static"})
   (route/not-found "Page not found"))
 
