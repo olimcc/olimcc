@@ -20,7 +20,7 @@
 (defroutes main-routes
   (GET "/" [] (handler))
   (GET "/location" [] (get-location))
-  (route/resources "/" {:root "static"})
+  (route/resources "/static" {:root "static"})
   (route/not-found "Page not found"))
 
 (def app
