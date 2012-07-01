@@ -1,7 +1,8 @@
 (ns olimcc.core
   (:use [ring.util.response]
         [compojure.core]
-        [olimcc.config :only (properties)])
+        [olimcc.config :only (properties)]
+        [clojure.tools.logging :only (info error)])
   (:require [compojure.route :as route]
             [compojure.handler :as handler]
             [clj-http.client :as client]))
