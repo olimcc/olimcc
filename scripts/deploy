@@ -31,6 +31,7 @@ new_version=$major.$minor
 # update version
 echo "Attempting update $old_version => $new_version"
 sed -i "" "1 s/$old_version/$new_version/" ../olimcc/project.clj
+echo $new_version > ../olimcc/resources/pages/version.html
 
 # commit
 echo "Commiting version change to repo"
