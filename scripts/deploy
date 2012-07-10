@@ -1,7 +1,49 @@
  #!/bin/sh
 
+# ensure we don't have pending project change
+changes=`git diff`
+if [[ $changes ]]
+then
+  echo "Error: You have uncommitted project changes, exiting!"
+  exit
+fi
+
+# increment
+str=`head -n 1 ../olimcc/project.clj | cut -f 3 -d ' ' | sed 's/"//g'`
+versions=(${str//./ })
+major=${versions[0]}
+minor=${versions[1]}
+old_version=$major.$minor
+
+if [[ $1 == "minor" ]]
+then
+  minor=$(($minor + 1))
+elif [[ $1 == "major" ]]
+then
+  major=$(($major + 1))
+else
+  echo "Error: Must provide major or minor arg, exiting!"
+  exit
+fi
+
+new_version=$major.$minor
+
+# update version
+echo "Attempting update $old_version => $new_version"
+sed -i "" "1 s/$old_version/$new_version/" ../olimcc/project.clj
+
+# commit
+echo "Commiting version change to repo"
+git add ../olimcc/project.clj
+git commit -m "increment project version to $new_version"
+
+# tag
+echo "Creating version tag"
+git tag -a v$new_version -m "version $new_version"
+
+# build
+echo "Building"
 SRC=$(cd $(dirname "$0"); pwd)/../olimcc
-HEAD=`git rev-parse HEAD | cut -c -10`
 REMOTE="~/apps/incoming"
 
 cd $SRC
@@ -9,8 +51,10 @@ lein ring uberwar
 FILE=`find $SRC/*.war | head -1`
 FILENAME=$(basename $FILE)
 
-echo "Pushing WAR to: $HEAD-$FILENAME"
-scp $FILE ubert@ec2:$REMOTE/$HEAD-$FILENAME
+# deploy
+echo "Pushing WAR to: $FILENAME"
+scp $FILE ubert@ec2:$REMOTE/$FILENAME
 
 rm $FILE
+
 
