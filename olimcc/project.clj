@@ -1,4 +1,4 @@
-(defproject olimcc "0.6"
+(defproject olimcc "0.7"
   :description "Olimcc site"
   :dependencies [[org.clojure/clojure "1.3.0"]
                  [org.clojure/tools.logging "0.2.3"]
