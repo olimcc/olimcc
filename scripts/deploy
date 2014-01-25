@@ -54,7 +54,7 @@ FILENAME=$(basename $FILE)
 
 # deploy
 echo "Pushing WAR to: $FILENAME"
-scp $FILE ubert@ec2:$REMOTE/$FILENAME
+scp $FILE ubuntu@ec2:$REMOTE/$FILENAME
 
 rm $FILE
 
