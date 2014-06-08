@@ -22,17 +22,9 @@ THE SOFTWARE.
 
 getJsonLoc = function() {
   var base = "http://maps.google.com/maps/api/staticmap?zoom=8&size=380x380&sensor=false";
-  $.getJSON("/location",
-            {},
-            function success(data){
-              var name = data["features"][0]["properties"]["reverseGeocode"];
-              var icon = data["features"][0]["properties"]["photoUrl"];
-              var coords = data["features"][0]["geometry"]["coordinates"];
-              var coords = coords[1] + "," + coords[0];
-              base += "&center=" + coords;
-              base += "&markers=icon:" + "http://google-maps-icons.googlecode.com/files/blueO.png" + "|"+coords+"|";
-              $('#latitudeImg').attr('src', base);
-            });
+  base += "&center=San Francisco, CA";
+  base += "&markers=icon:" + "http://google-maps-icons.googlecode.com/files/blueO.png" + "|San Francisco, CA|";
+  $('#latitudeImg').attr('src', base);
 }
 
 var allColours = [

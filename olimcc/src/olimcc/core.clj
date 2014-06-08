@@ -1,5 +1,6 @@
 (ns olimcc.core
   (:use [ring.util.response]
+        [ring.adapter.jetty :refer [run-jetty]]
         [compojure.core]
         [olimcc.config :only (properties)]
         [clojure.tools.logging :only (info error)])
@@ -7,22 +8,16 @@
             [compojure.handler :as handler]
             [clj-http.client :as client]))
 
-(defn handler [page]
+(defn idx-handler [page]
   ;; doesn't seem to work:
   ;; (file-response "test.html" {:root "pages"})
   (resource-response (str page ".html") {:root "pages"}))
 
-(defn get-location []
-  (let [endpoint "https://www.google.com/latitude/apps/badge/api?type=json&user="
-        user ((properties) :user)]
-        (client/get (str endpoint user))))
-
 (defroutes main-routes
-  (GET "/location" [] (get-location))
-  (GET "/" [] (handler "index"))
-  (GET "/:page" [page] (handler page))
+  (GET "/" [] (idx-handler "index"))
+  (GET "/:page" [page] (idx-handler page))
   (route/resources "/static" {:root "static"})
   (route/not-found "Page not found"))
 
-(def app
-  (handler/site main-routes))
+(defn -main []
+  (run-jetty (handler/site main-routes) {:port 8080}))
