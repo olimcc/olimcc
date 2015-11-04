@@ -1,20 +1,19 @@
-Olimcc.com
-==========
+# olimcc2
 
-Run local
----
-        $ lein deps
-        $ lein ring server
+FIXME
 
+## Prerequisites
 
-Deps/Server setup
----
+You will need [Leiningen][] 2.0.0 or above installed.
 
-Get Java
+[leiningen]: https://github.com/technomancy/leiningen
 
-        $ apt-get install openjdk-6-jdk
+## Running
 
-Get Tomcat
+To start a web server for the application, run:
 
-        $ apt-get install tomcat6
-        $ /etc/init.d/tomcat6 start
+    lein ring server
+
+## License
+
+Copyright © 2015 FIXME
