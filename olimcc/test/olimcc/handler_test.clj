@@ -1,13 +1,12 @@
-(ns olimcc2.handler-test
+(ns olimcc.handler-test
   (:require [clojure.test :refer :all]
             [ring.mock.request :as mock]
-            [olimcc2.handler :refer :all]))
+            [olimcc.handler :refer :all]))
 
 (deftest test-app
   (testing "main route"
     (let [response (app (mock/request :get "/"))]
-      (is (= (:status response) 200))
-      (is (= (:body response) "Hello World"))))
+      (is (= (:status response) 200))))
 
   (testing "not-found route"
     (let [response (app (mock/request :get "/invalid"))]

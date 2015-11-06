@@ -1,0 +1,32 @@
+.full-circle {
+ border: 1px solid #333;
+ height: 250px;
+ width: 250px;
+ left:41%;
+ top:28%;
+ position: relative;
+ -moz-border-radius:125px;
+ -webkit-border-radius: 125px;
+}
+
+.full-circle p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 50px;
+  top: 37px;
+  left: 29px;
+  position: relative;
+}
+
+.chart {
+  width: 1200px;
+  height:800px;
+}
+
+.headphones {
+  fill: gray;
+}
+
+#headphone-text {
+  font-family: 'Syncopate', sans-serif;
+  font-size: 13;
+}
