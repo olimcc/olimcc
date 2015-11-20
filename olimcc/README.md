@@ -1,19 +1,15 @@
-# olimcc2
+Crude running of unversioned docker container:
 
-FIXME
+    ./build.sh
+    scp target/olimcc-app.docker.tgz some-host:
 
-## Prerequisites
+To install (on host):
 
-You will need [Leiningen][] 2.0.0 or above installed.
+    mkdir olimcc-app-data # only the first time
+    gunzip olimcc-app.docker.tgz
+    docker load -i olimcc-app.docker.tar
+    docker run -d -v ~/olimcc-app-data/:/root/olimcc-app-data/ -p 8080:8080 olimcc-app
 
-[leiningen]: https://github.com/technomancy/leiningen
+To clean up old images:
 
-## Running
-
-To start a web server for the application, run:
-
-    lein ring server
-
-## License
-
-Copyright © 2015 FIXME
+    docker rmi -f $(docker images -f "dangling=true" -q)
