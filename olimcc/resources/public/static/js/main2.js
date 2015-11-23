@@ -179,6 +179,9 @@ var init = function(data) {
   */
 };
 
-d3.json("/location", function(error, json) {
+var url = purl(),
+  start = url.param('start'),
+  dest = start ? "/location?start=" + start : "/location";
+d3.json(dest, function(error, json) {
   init(json);
 })
