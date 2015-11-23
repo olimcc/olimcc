@@ -17,8 +17,11 @@
   position: relative;
 }
 
+h1 {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .chart {
-  width: 1200px;
   height:800px;
 }
 

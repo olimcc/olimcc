@@ -1,14 +1,9 @@
-var data = [
-  {name: 'Golden Gate Park', value: [3, 5]},
-  {name: 'Ocean Beach', value:  [1, 4.25]},
-  {name: 'Trouble Coffee', value: [2, 3.5]},
-  {name: 'Castro', value: [5, 3]}
-];
+var init = function(data) {
 
-var init = function() {
+  var data = _.map(data.reverse(), function(d) {return {value: [d.lng, d.lat]}});
 
-  var margin = {top: 20, right: 20, bottom: 20, left: 20};
-    width = 1200 - margin.right - margin.left,
+  var margin = {top: 60, right: 60, bottom: 90, left: 60};
+    width = 1440 - margin.right - margin.left,
     height = 800 - margin.top - margin.bottom;
 
   var svg = d3.select('.chart')
@@ -19,11 +14,13 @@ var init = function() {
 
     var y = d3.scale.linear()
       .range([height, 0])
-      .domain([0, d3.max(data, function(d) { return d.value[1]; })]);
+      .domain([d3.min(data, function(d) { return d.value[1]; }),
+               d3.max(data, function(d) { return d.value[1]; })]);
 
     var x = d3.scale.linear()
-      .range([0, width*.5])
-      .domain([0, d3.max(data, function(d) { return d.value[0]; })]);
+      .range([0, width])
+      .domain([d3.min(data, function(d) { return d.value[0]; }),
+               d3.max(data, function(d) { return d.value[0]; })]);
 
   // generate a line fn
   var line = d3.svg.line()
@@ -49,6 +46,7 @@ var init = function() {
     .style('stroke-width', '2');
 
     // headphones
+    /*
     var centre = [x(data[data.length-1].value[0]), y(data[data.length-1].value[1])]
     var pi = Math.PI;
     var arc = d3.svg.arc()
@@ -100,8 +98,10 @@ var init = function() {
     	 .attr('startOffset', '6.5%')
        .attr('transform', 'translate(100, 100)')
     	 .text('Flying Lotus - Massage Situation');
+       */
 
     // main circle
+    /*
     var coreCircle = svg.append('circle')
       .attr('cx', x(data[data.length-1].value[0]))
       .attr('cy', y(data[data.length-1].value[1]))
@@ -109,13 +109,14 @@ var init = function() {
       .style('fill', 'white')
       .style('stroke', 'black')
       .style('stroke-width', '2');
+      */
 
-    /*
     var pulseCircle = svg.append('circle')
       .attr('cx', x(data[data.length-1].value[0]))
       .attr('cy', y(data[data.length-1].value[1]))
       .attr('r', 0)
       .style('fill', 'white')
+      .style('fill-opacity', '0')
       .style('stroke', 'gray')
       .style('stroke-width', '2');
 
@@ -141,7 +142,8 @@ var init = function() {
         .attr('cx', x(data[data.length-1].value[0]))
         .attr('cy', y(data[data.length-1].value[1]))
         .attr('r', 0)
-        .style('fill', 'white')
+       .style('fill', 'white')
+       .style('fill-opacity', '0')
         .style('stroke', 'gray')
         .style('stroke-width', '2');
 
@@ -164,7 +166,7 @@ var init = function() {
           })();
         })
 
-    */
+
 
   /*
   svg.selectAll('text')
@@ -177,4 +179,6 @@ var init = function() {
   */
 };
 
-init();
+d3.json("/location", function(error, json) {
+  init(json);
+})
