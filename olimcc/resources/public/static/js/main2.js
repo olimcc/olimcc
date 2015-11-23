@@ -1,10 +1,10 @@
-var init = function(data) {
+var initCharts = function(data) {
 
   var data = _.map(data.reverse(), function(d) {return {value: [d.lng, d.lat]}});
 
   var margin = {top: 60, right: 60, bottom: 90, left: 60};
     width = 1440 - margin.right - margin.left,
-    height = 800 - margin.top - margin.bottom;
+    height = 650 - margin.top - margin.bottom;
 
   var svg = d3.select('.chart')
       .attr('width', width + margin.left + margin.right)
@@ -30,8 +30,8 @@ var init = function(data) {
 
   svg.append('path')
     .attr('d', line(data))
-    .style('stroke', 'black')
-    .style('stroke-width', '2')
+    .style('stroke', 'silver')
+    .style('stroke-width', '1')
     .style('fill', 'none')
 
   svg.selectAll('circle.locations')
@@ -40,10 +40,13 @@ var init = function(data) {
     .append('circle')
     .attr('cx', function(d){return x(d.value[0])})
     .attr('cy', function(d){return y(d.value[1])})
-    .attr('r', 6)
-    .style('fill', 'black')
-    .style('stroke', 'white')
-    .style('stroke-width', '2');
+    .attr('r', 4)
+    .style('fill', 'silver')
+    .style('stroke', 'black')
+    .style('stroke-width', '3')
+    .on('click', function(d) {
+      console.log(d.value.reverse())
+    })
 
     // headphones
     /*
@@ -111,33 +114,51 @@ var init = function(data) {
       .style('stroke-width', '2');
       */
 
-    var pulseCircle = svg.append('circle')
-      .attr('cx', x(data[data.length-1].value[0]))
-      .attr('cy', y(data[data.length-1].value[1]))
-      .attr('r', 0)
-      .style('fill', 'white')
-      .style('fill-opacity', '0')
-      .style('stroke', 'gray')
-      .style('stroke-width', '2');
+    var times = 5;
 
-    pulseCircle.transition()
-      .duration(1200)
-      .attr('r', 98)
-      .style('stroke', 'white')
-      .each('end', function() {
-        var pC = d3.select(this);
-        (function repeat() {
-          pC.attr('r', 0)
-            .style('stroke', 'gray');
-          pC.transition()
-            .delay(500)
-            .duration(1200)
-            .attr('r', 98)
-            .style('stroke', 'white')
-            .each('end', repeat);
-        })();
-      })
+    var makePulseCircle = function() {
+      // base circle
+      var pulseCircle = svg.append('circle')
+        .attr('cx', x(data[data.length-1].value[0]))
+        .attr('cy', y(data[data.length-1].value[1]))
+        .attr('r', 0)
+        .style('fill', 'white')
+        .style('fill-opacity', '0')
+        .style('stroke', 'gray')
+        .style('stroke-width', '2')
+        .style('stroke-opacity', .7);
 
+      pulseCircle.transition()
+        .duration(1500)
+        .attr('r', 200)
+        .style('stroke-opacity', 0)
+        .each('end', function() {
+          var count = 1;
+          var pC = d3.select(this);
+          (function repeat() {
+            count+=1;
+            pC.attr('r', 0)
+              .style('stroke-opacity', .7);
+            pC.transition()
+              .delay(600)
+              .duration(1500)
+              .attr('r', 200)
+              .style('stroke-opacity', 0)
+              .each('end', function() {
+                (count < times) ? repeat() : null;
+              });
+          })();
+        })
+    }
+
+    makePulseCircle();
+    window.setTimeout(function() {
+      makePulseCircle();
+    }, 140)
+
+
+
+      /*
       var pulseCircle2 = svg.append('circle')
         .attr('cx', x(data[data.length-1].value[0]))
         .attr('cy', y(data[data.length-1].value[1]))
@@ -145,7 +166,8 @@ var init = function(data) {
        .style('fill', 'white')
        .style('fill-opacity', '0')
         .style('stroke', 'gray')
-        .style('stroke-width', '2');
+        .style('stroke-width', '2')
+        .style('stroke-opacity', .2);
 
       pulseCircle2.transition()
         .duration(1200)
@@ -165,6 +187,8 @@ var init = function(data) {
               .each('end', repeat);
           })();
         })
+        */
+
 
 
 
@@ -181,7 +205,7 @@ var init = function(data) {
 
 var url = purl(),
   start = url.param('start'),
-  dest = start ? "/location?start=" + start : "/location";
+  dest = start ? "http://olimcc.com/location?start=" + start : "http://olimcc.com/location";
 d3.json(dest, function(error, json) {
-  init(json);
+  initCharts(json);
 })

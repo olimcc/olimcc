@@ -56,10 +56,11 @@
     (when (-> params :lat (= nil) not)
       (insert-location db-spec (:lon params) (:lat params)))
     (let [start-ts (or (when-let [s (:start params)] (Long/parseLong s))
-                       (- (System/currentTimeMillis) (* 60 60 1000)))]
+                       (- (System/currentTimeMillis) (* 2 60 60 1000)))]
       {:body (json/generate-string (get-locations db-spec start-ts)
                                    {:pretty (-> params :pretty boolean)})
-       :headers {"Content-Type" "application/json"}})))
+       :headers {"Content-Type" "application/json"
+                 "Access-Control-Allow-Origin" "*"}})))
 
 (defn wrap-dir-index [handler]
   (fn [req]
