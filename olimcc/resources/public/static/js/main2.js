@@ -23,6 +23,26 @@ var getMail = function() {
   return res.join('');
 };
 
+/**
+ * credit:
+ * http://stackoverflow.com/questions/985272/selecting-text-in-an-element-akin-to-highlighting-with-your-mouse
+ */
+var selectText = function(element) {
+    var doc = document,
+        range, selection;
+    if (doc.body.createTextRange) {
+        range = document.body.createTextRange();
+        range.moveToElementText(element);
+        range.select();
+    } else if (window.getSelection) {
+        selection = window.getSelection();
+        range = document.createRange();
+        range.selectNodeContents(element);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+}
+
 var initCharts = function(data) {
 
   var data = _.map(data.reverse(), function(d) {return {value: [d.lng, d.lat]}});
@@ -168,7 +188,10 @@ var initCharts = function(data) {
 };
 
 var el = document.getElementById('email');
-el.innerHTML = getMail();
+el.innerHTML = '<span>' + getMail() + '</span>';
+el.addEventListener('click', function(){
+  selectText(el);
+});
 
 var url = purl(),
   start = url.param('start'),
