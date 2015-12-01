@@ -46,6 +46,7 @@ body {
  -webkit-border-radius: 19px;
 }
 
+
 .full-circle svg {
   fill: silver;
   stroke: gray;
@@ -57,6 +58,10 @@ body {
   right: 3px;
 }
 
+#info {
+  cursor: pointer;
+}
+
 .full-circle p {
   font-family: 'Open Sans', sans-serif;
   margin: 0px;
@@ -65,6 +70,7 @@ body {
   color: silver;
 
 }
+
 
 /* BORDER TRANSITIONS */
 /* taken from/credit to: http://ianlunn.github.io/Hover/ */
@@ -121,9 +127,9 @@ h1 {
   border-radius: 2px;
   box-shadow: 0 0 0 0px rgba(255,255,255,.15), 0 0 0px rgba(255,255,255,.15);
   color: silver;
-  padding-top:15px;
+  padding-top:50px;
   font-family: 'Open Sans', sans-serif;
-  max-width: 300px;
+  max-width: 200px;
   font-size: 13px;
   font-weight: bold;
 }
