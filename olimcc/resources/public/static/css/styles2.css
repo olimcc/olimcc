@@ -3,8 +3,7 @@ body {
 }
 
 #header div {
-  margin-right:4px;
-  display: inline-block;
+  margin-right: 4px;
 }
 
 /* some sf muni colors, for potential fun. */
@@ -20,18 +19,51 @@ body {
   background-color: rgb(214,4,66);
 }
 
+#header {
+  height:100px;
+  color: white;
+  padding-left: 3px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+#email {
+  position: relative;
+  color: silver;
+  display: inline;
+  padding-left: 9px;
+  height: 100%;
+  border-left: 1px solid silver;
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+.full-circle {
+ display: inline-block;
+ height: 38px;
+ width: 38px;
+ position: relative;
+ -moz-border-radius: 19px;
+ -webkit-border-radius: 19px;
+}
+
 .full-circle svg {
   fill: silver;
   stroke: gray;
   stroke-width: 2;
 }
 
-.full-circle {
- height: 46px;
- width: 46px;
- position: relative;
- -moz-border-radius: 23px;
- -webkit-border-radius: 23px;
+.pull-right {
+  position: absolute;
+  right: 3px;
+}
+
+.full-circle p {
+  font-family: 'Open Sans', sans-serif;
+  margin: 0px;
+  padding: 3px 0 0 16px;
+  font-size: 22px;
+  color: silver;
+
 }
 
 /* BORDER TRANSITIONS */
@@ -59,14 +91,6 @@ body {
   /* Hack to improve aliasing on mobile/tablet devices */
 }
 
-.full-circle p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 50px;
-  top: 37px;
-  left: 29px;
-  position: relative;
-}
-
 h1 {
   font-family: 'Open Sans', sans-serif;
 }
@@ -76,8 +100,30 @@ h1 {
   font-size: 13;
 }
 
-#header {
-  height:100px;
-  color: white;
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+.html5tooltip-box
+{
+  background-color: #2A2A2A;
+  border-radius: 2px;
+  box-shadow: 0 0 0 0px rgba(255,255,255,.15), 0 0 0px rgba(255,255,255,.15);
+  color: silver;
+  padding-top:15px;
   font-family: 'Open Sans', sans-serif;
+  max-width: 300px;
+  font-size: 13px;
+  font-weight: bold;
 }
