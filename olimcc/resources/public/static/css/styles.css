@@ -1,185 +1,158 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*
+ * -- BASE STYLES --
+ * Most of these are inherited from Base, but I want to change a few.
+ */
 body {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  background-color: white;
-  font-family: 'Waiting for the Sunrise', arial, serif;
+    line-height: 1.7em;
+    color: #7f8c8d;
+    font-size: 13px;
+    background-color: black;
 }
 
-h1, h2, h3, h4, h5, h6 {
-margin: 1em 0px;
- padding: 0;
- font-weight: normal;
- font-family: 'Waiting for the Sunrise', arial, serif;
- }
-
-
-#container {
-  height: 100% ;
-  width: 100% ;
-  position: fixed;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+    color: #34495e;
 }
 
-#canvas {
-  height: 100% ;
-  margin: 0 auto;
-  text-align: left;
-  width: 100% ;
+/*
+ * -- MENU STYLES --
+ * I want to customize how my .pure-menu looks at the top of the page
+ */
+
+.home-menu {
+    padding: 0.5em;
+    text-align: center;
+    box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
 }
 
-#content {
-  position: absolute;
-  top: 1px;
-  left: 150px;
+.pure-menu.pure-menu-fixed {
+    /* Fixed menus normally have a border at the bottom. */
+    border-bottom: none;
+    /* I need a higher z-index here because of the scroll-over effect. */
+    z-index: 4;
+}
+
+.home-menu .pure-menu-heading {
+    color: white;
+    font-weight: 400;
+    font-size: 120%;
+}
+
+.home-menu .pure-menu-selected a {
+    color: white;
+}
+
+.home-menu a {
+    color: #6FBEF3;
+}
+.home-menu li a:hover,
+.home-menu li a:focus {
+    background: none;
+    border: none;
+    color: #AECFE5;
+}
+
+.splash-container {
+    z-index: 1;
+    overflow: hidden;
+    /* The following styles are required for the "scroll-over" effect */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed !important;
+}
+
+/*
+ * -- TABLET (AND UP) MEDIA QUERIES --
+ * On tablets and other medium-sized devices, we want to customize some
+ * of the mobile styles.
+ */
+@media (min-width: 48em) {
+
+    /* We increase the body font size */
+    body {
+        font-size: 16px;
+    }
+    /* We want to give the content area some more padding */
+    .content {
+        padding: 1em;
+    }
+
+    /* We can align the menu header to the left, but float the
+    menu items to the right. */
+    .home-menu {
+        text-align: left;
+    }
+
+    .home-menu ul.right-side {
+      float: right;
+    }
+
+}
+
+/*
+ * -- DESKTOP (AND UP) MEDIA QUERIES --
+ * On desktops and other large devices, we want to over-ride some
+ * of the mobile and tablet styles.
+ */
+@media (min-width: 78em) {
+    /* We increase the header font size even more */
+    .splash-head {
+        font-size: 300%;
+    }
+}
+
+.svg-container {
+    position: relative;
+    width: 100%; /* container-width */
+}
+.svg-container > svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.pure-menu-item a {
+  color: silver;
+}
+
+.home-menu li {
+  line-height: 1.55em;
+}
+
+.home-menu li a:hover {
   color: white;
-  z-index: 100;
-  text-align: justify;
-  padding: 10px;
-  font-size: 20px;
-  font-family: 'Copse',
-  arial,
-  serif;
 }
 
-
-li {
-  list-style-type: none;
-  font-family: 'Waiting for the Sunrise',
-  arial,
-  serif;
-  font-size: 20px;
-  padding: 0px;
-  line-height: 26px;
-  text-align: center;
+.info {
+  color:silver;
 }
 
-a {
-  color: white;
-  text-decoration: none;
+.info:hover {
+  color:white;
+  cursor: pointer;
 }
 
-a:hover {
-  color: red;
-  text-decoration: none;
+.pure-menu-item {
+  padding-left: .7em;
 }
 
-#likeArrow {
-  position: absolute;
-  left: 65px;
-  top: 550px;
-}
-
-#locationArrow {
-  position: absolute;
-  left: 850px;
-  top: 30px;
-}
-
-#aboutMeArrow {
-  position: absolute;
-  left: 40px;
-  top: 0px;
-}
-
-#tinkeringArrow {
-  position: absolute;
-  left: 530px;
-  top: 420px;
-}
-
-#locationText {
-  top: 150px;
-  left: 920px;
-  width: 122px;
-
-}
-
-#likeText {
-  left: 90px;
-  top: 540px;
-  width: 200px;
-}
-
-.labelText {
-  width: 120px;
-  font-family: 'Waiting for the Sunrise',
-  arial,
-  serif;
-  font-size: 25px;
-  position: absolute;
-  line-height: 24px;
-}
-
-#aboutMeText {
-  left: 20px;
-  top: 80px;
-}
-
-#tinkeringText {
-  left: 560px;
-  top: 420px;
-}
-
-#contact {
-  position: absolute;
-  left: 270px;
-  top: 70px;
-  width: 150px;
-  font-size: 20px;
-  line-height: 22px;
-  font-family: 'Waiting for the Sunrise',
-  arial,
-  serif;
-  text-align: center;
-}
-
-#location {
-  position: fixed;
-  left: 620px;
-  top: 20px;
-  width: 400px;
-  height: 400px;
-  overflow: hidden;
-  padding: 10px 10px;
-}
-
-#tooltip {
-  position: absolute;
-  font-family: 'Waiting for the Sunrise',
-  arial,
-  serif;
-  left: 770px;
-  top: 394px;
-  width: 165px;
-  line-height: 20px;
-  text-align: center;
-}
-
-#work {
-  position: absolute;
-  left: 265px;
-  top: 325px;
-  width: 250px;
-  font-family: 'Waiting for the Sunrise',
-  arial,
-  serif;
-}
-
-#like {
-  left: 3px;
-  top: 250px;
-  position: absolute;
-  width: 180px;
-}
-
-#mapHolder {
-  width: 700px;
-  height: 700px;  
-}
-
-.mapRounded {
-  -moz-border-radius: 200px;
-  -webkit-border-radius: 200px;
-  -khtml-border-radius: 200px;
-  border-radius: 200px;
+#email  {
+  margin:0 0 0 .7em;
+  border-left: 1px solid #666666;
+  font-family: 'Open Sans', sans-serif;
 }

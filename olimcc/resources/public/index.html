@@ -1,143 +1,64 @@
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
-<head profile="http://gmpg.org/xfn/11">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="description" content="Oli Mcc on the web!" />
-<meta name="keywords" content=" oli mcc, whodat, oli, raphaeljs, visualization, python, javascript, google, app engine, gviz" />
-<title>Olimcc.com</title>
-<link rel="stylesheet" href="static/css/styles.css" type="text/css" media="screen" />
-<link href='http://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise' rel='stylesheet' type='text/css' />
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Oli Mcc on the web">
+  <title>Olimcc.com</title>
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Syncopate' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="static/lib/css-modal/1.4.0/modal.css" type='text/css' media='screen' />
+  <link rel="stylesheet" href="static/css/styles.css" type='text/css' media='screen' />
 </head>
 <body>
-  <div id="container" style="background-color:black">
-    <div id="canvas">
-    </div>
-    <div id="content" style="display:none">
-      <canvas id="aboutMeArrow" width="400" height="400">
-      </canvas>
-      <h1 id="aboutMeText" class="labelText">
-        About Me
-      </h1>
-      <div id="contact">
-        <p>
-          Live and
-          <a ttcontent="SWWEEEEEEEE at <a href='http://climate.com/' target='_blank'>climate.com</a>" title="Current work experience" href="#">work</a>
-          in
-          <a ttcontent="But from <a href='http://goo.gl/maps/JxJjz' target='_blank'>Dublin, Ireland</a>! And lived in <a href='http://goo.gl/maps/23582' target='_blank'>Canada</a> for some time." title="Current and past living locations" href="#">San Francisco</a>, just finished up
-          <a target="_blank" title="Education and learning, Masters Computer Science in Dublin" ttcontent="MSc. CS, UCD Dublin, Ireland. Interesting classes: Context Sensitive Service Delivery, Cloud Computing, Collective Intelligence."
-          href="http://www.csi.ucd.ie/content/taught-msc-computer-science-negotiated-learning">Msc. CS</a>
-          
-        </p>
-        <p>
-          I like to party.
-        </p>
-        <p>
-          <a ttfunc="getVal" title="Contact Me" rel="nofollow" href="#">Contact Me</a>
-        </p>
-      </div>
-      <canvas id="locationArrow" width="400" height="400">
-      </canvas>
-      <h1 id="locationText" class="labelText">
-        Current City (according to Latitude)
-      </h1>
-      <div id="location" class="mapRounded">
-        <div id="mapHolder">
-          <img alt="Oli's Google Latitude Location" src="http://maps.google.com/maps/api/staticmap?center=Dublin,Ireland&zoom=14&size=380x380&sensor=false"
-          id="latitudeImg" class="mapRounded" />
-        </div>
-      </div>
-      <canvas id="likeArrow" width="400" height="400">
-      </canvas>
-      <h1 id="likeText" class="labelText">
-        + Like
-      </h1>
-      <div id="like">
-        <ul>
-          <li>
-            <a ttcontent="Sailing FTW" target="_blank" href="http://www.sligoyachtclub.ie/">Boats</a>
-          </li>
-          <li>
-            <a ttcontent="Kiteboarding, if time permits. Friends own a brilliant kite centre & hostel in Sligo. Check 'em out for an action packed weekend!"
-            target="_blank" href="http://lsdkiteboarding.com/home" title="LSD KIteboarding Company">LSD</a>
-          </li>
-          <li>
-            <a ttcontent="Is important for lots of things, so I've mounted a weather station that streams live to the web. Pretty graphs!"
-            target="_blank" href="http://sligobayweather.com/" title="Sligo Bay Weather - Web Streamed Weather Station">The Weather</a>
-          </li>
-          <li>
-            <a ttcontent="Snowboarding is fun!" target="_blank" href="http://www.youtube.com/watch?v=53M_yDN85v0" title="Snowboarding hobby">Snowboarding</a>
-          </li>
-          <li>
-            <a ttcontent="AKA Diabolo, fun juggling." target="_blank" href="http://en.wikipedia.org/wiki/Diabolo" title="Diabolo, a type of juggling">El Diabolo</a>
-          </li>
-          <li>
-            <a ttcontent="Brilliant animator. Based in Galway, Ireland. Check out his work."
-            target="_blank" href="http://www.markmullery.com/" title="Mark Mullery - an excellent animator">Mark Mullery</a>
-          </li>
-          <li>
-            <a ttcontent="Excellent. Graphic. Designer. And Photgrapher." target="_blank" title="Gary Boylan - designed and photographer" href="http://www.worky.com/gary-boylan">Gary Boylan</a>
-          </li>
-          <li>
-            <a ttcontent="Funky band. Excellent tunes." target="_blank" title="Tucan - Funk music band" href="http://www.youtube.com/tucanmusic">Tucan Music</a>
-          </li>
-        </ul>
-      </div>
-      <canvas id="tinkeringArrow" width="400" height="400">
-      </canvas>
-      <h1 id="tinkeringText" class="labelText">
-        Tinkering
-      </h1>
-      <div id="work" style="">
-        <ul>
-          <li>
-            <a ttcontent="A Facebook Game. With a purpose." target="A Facebook Game With A Purpose" target="_blank" href="http://whodatgwap.appspot.com/Game">WhoDat</a>
-          </li>
-          <li>
-            <a ttcontent="Github, with all of my most recent projects. Includes a google visualization pivot table, take a look."
-            target="_blank" href="https://github.com/olimcc" title="Github - Project source code repository">Github</a>
-          </li>
-          <li>
-            <a ttcontent="Old Bitbucket repo. Some code someone may find useful! Includes some fusion tables, app engine, and gviz. Mostly Python/JS"
-            target="_blank" href="https://bitbucket.org/oli/yapakarri/src" title="Bitbucket source code repository">Bitbucket</a>
-          </li>
-          <li>
-            <a ttcontent="I think that RaphaelJs is cool. This site uses it. These are some recipes I've come up with."
-            target="_blank" href="http://etherpad.olimcc.com/p/raphaelRecipes" title="RaphaelJs - a cool javascript graphics library">Raphael</a>
-          </li>
-          <li>
-            <a ttcontent="Etherpad is great. Check it out, make a pad!" target="_blank" title="Etherpad - web based collaborative editor" href="http://etherpad.olimcc.com/">Etherpad</a>
-          </li>
-          <li>
-            <a ttcontent="See your Facebook friend checkins mapped! The result of a Facebook hackathon (honourable mention!)"
-            target="_blank" href="http://www.mappish.com" title="Mappish - see your facebook friend checkins mapped">Mappish</a>
-          </li>
-        </ul>
-      </div>
-      <div id="tooltip">
-      </div>
-      <div id="fblike" style="position:fixed;left:10px;bottom:10px">
-        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1">
-        </script>
-        <fb:like href="www.olimcc.com/" send="true" layout="button_count" width="450" show_faces="false"
-        font="">
-        </fb:like>
-      </div>
+  <div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed"  id='header'>
+      <ul class="pure-menu-list">
+        <li class="pure-menu-item">
+        <a href='http://storage.googleapis.com/olimcc-projects/index.html' target='_blank'>
+          <i class='fa fa-2x fa-lightbulb-o'></i>
+        </a>
+        </li>
+        <li class="pure-menu-item">
+        <a href='http://www.github.com/olimcc' target='_blank'>
+          <i class='fa fa-2x fa-github'></i>
+        </a>
+        </li>
+        <li class="pure-menu-item" id='email'>
+        </li>
+      </ul>
+      <ul class="pure-menu-list right-side">
+        <li class="pure-menu-item info">
+          <a href='#modal-text'>
+          <i class=" fa fa-2x fa-question-circle"></i>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
+
+  <div class="splash-container">
+  <svg class='svg-container'></svg>
+  </div>
+
+  <!-- Info modal content -->
+  <section class="modal--show" id="modal-text" tabindex="-1"
+      role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+
+    <div class="modal-inner" style='background: black; border: 0; color: silver; font-family: "Open Sans", sans-serif;'>
+      <div class="modal-content" style='border: 0'>
+      The visual on this page indicates activity and movement over the past 2 hours.
+      </div>
+    </div>
+    <a href="#!" class="modal-close" style='color: black' title="Close this modal" data-close="Close"
+      data-dismiss="modal">?</a>
+  </section>
+  <script src='//d3js.org/d3.v3.min.js' charset='utf-8'></script>
+  <script src='http://underscorejs.org/underscore-min.js' charset='utf-8'></script>
+  <script src='static/lib/purl.js'></script>
+  <script src='static/js/main.js'></script>
 </body>
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-12233820-1']);
-  _gaq.push(['_setDomainName', '.olimcc.com']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
-<script src="static/lib/raphael-min.js"></script>
-<script src="static/js/main.js"></script>
 </html>
