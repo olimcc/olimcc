@@ -39,10 +39,11 @@
       (log/infof "table %s already exists, will not create" table-name))))
 
 (defn get-locations
-  [db-spec start-timestamp]
+  [db-spec start-timestamp end-timestamp limit]
   (jdbc/query db-spec
-              ["select * from location WHERE timestamp >= ? ORDER BY timestamp DESC LIMIT 100"
-               start-timestamp]))
+              [(str "SELECT * FROM location WHERE timestamp BETWEEN ? AND ? "
+                    "ORDER BY timestamp DESC LIMIT ?")
+               start-timestamp end-timestamp limit]))
 
 (defn insert-location
   [db-spec lng lat]
@@ -52,12 +53,15 @@
 ;; handlers
 (defn location-handler
   [req]
-  (let [params (:params req)]
+  (let [params (:params req)
+        now-ts (System/currentTimeMillis)]
     (when (-> params :lat (= nil) not)
       (insert-location db-spec (:lon params) (:lat params)))
     (let [start-ts (or (when-let [s (:start params)] (Long/parseLong s))
-                       (- (System/currentTimeMillis) (* 2 60 60 1000)))]
-      {:body (json/generate-string (get-locations db-spec start-ts)
+                       (- now-ts (* 2 60 60 1000)))
+          limit (or (when-let [l (:limit params)] (Long/parseLong l))
+                    100)]
+      {:body (json/generate-string (get-locations db-spec start-ts now-ts limit)
                                    {:pretty (-> params :pretty boolean)})
        :headers {"Content-Type" "application/json"
                  "Access-Control-Allow-Origin" "*"}})))
@@ -107,6 +111,6 @@
 
   (delete-all-locs)
   (load-test-locs)
-  (get-locations db-spec 0)
+  (count (get-locations db-spec 0 (System/currentTimeMillis) 50))
 
   )
