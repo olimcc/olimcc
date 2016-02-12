@@ -1,3 +1,5 @@
+var ONE_HOUR_MS = 60 * 60 * 1000;
+
 var getPointsOnPath = function(pathNode, segments) {
   var l = pathNode.getTotalLength(),
     segmentLength = l/segments;
@@ -197,11 +199,21 @@ el.addEventListener('click', function(){
   selectText(el);
 });
 
+var exec = function(start, limit) {
+  var dest = start ? "http://olimcc.com/location?start=" + start + '&' : "http://olimcc.com/location?",
+    dest = limit ? dest + 'limit=' + limit : dest;
+  d3.json(dest, function(error, json) {
+    if (json.length > 1) {
+      initCharts(json);
+    } else {
+      // look back two more hours
+      var newStart = (start || (new Date()).getTime()) - (ONE_HOUR_MS * 2);
+      exec(newStart, limit);
+    }
+  });
+}
+
 var url = purl(),
   start = url.param('start'),
-  limit = url.param('limit'),
-  dest = start ? "http://olimcc.com/location?start=" + start + '&' : "http://olimcc.com/location?",
-  dest = limit ? dest + 'limit=' + limit : dest;
-d3.json(dest, function(error, json) {
-  initCharts(json);
-});
+  limit = url.param('limit');
+exec(start, limit);
