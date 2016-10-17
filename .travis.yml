@@ -8,6 +8,9 @@ services:
 install:
   - echo "install nothing!" # put your normal pre-testing installs here
 
+script:
+  - echo "no tests!"
+
 after_success:
   - cd olimcc
   - docker --version
