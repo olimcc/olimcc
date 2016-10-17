@@ -7,11 +7,8 @@
             [clojure.tools.logging :as log]
             [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
 
-(def db-spec
-  {:classname   "org.sqlite.JDBC"
-   :subprotocol "sqlite"
-   :subname     (format "/%s/olimcc-app-data/olimcc-sqlite.db"
-                        (System/getProperty "user.home"))})
+(def db-spec (atom {}))
+
 
 (defn exists?
   "Check whether a given table exists."
@@ -25,7 +22,7 @@
     (catch Throwable ex
       false)))
 
-(defn create-db []
+(defn create-db [db-spec]
   (let [table-name :location]
     (log/infof "attempting table creation for %s" table-name)
     (if-not (exists? db-spec table-name)
@@ -56,12 +53,12 @@
   (let [params (:params req)
         now-ts (System/currentTimeMillis)]
     (when (-> params :lat (= nil) not)
-      (insert-location db-spec (:lon params) (:lat params)))
+      (insert-location @db-spec (:lon params) (:lat params)))
     (let [start-ts (or (when-let [s (:start params)] (Long/parseLong s))
                        (- now-ts (* 2 60 60 1000)))
           limit (or (when-let [l (:limit params)] (Long/parseLong l))
                     100)]
-      {:body (json/generate-string (get-locations db-spec start-ts now-ts limit)
+      {:body (json/generate-string (get-locations @db-spec start-ts now-ts limit)
                                    {:pretty (-> params :pretty boolean)})
        :headers {"Content-Type" "application/json"
                  "Access-Control-Allow-Origin" "*"}})))
@@ -79,7 +76,10 @@
 (defn init
   "Initialize the app. Called once at startup."
   []
-  (create-db))
+  (let [app-cfg-loc (str "./.app-config.clj")
+        app-spec (load-file app-cfg-loc)]
+    (reset! db-spec (:db-spec app-spec))
+    (create-db (:db-spec app-spec))))
 
 (def app
 (wrap-dir-index
@@ -112,5 +112,4 @@
   (delete-all-locs)
   (load-test-locs)
   (count (get-locations db-spec 0 (System/currentTimeMillis) 50))
-
   )

@@ -23,12 +23,16 @@ ENV LEIN_ROOT 1
 # Build app using lein
 WORKDIR /app
 COPY . /app
-RUN mkdir $HOME/olimcc-app-data
+#RUN mkdir $HOME/.olimcc-app
+#COPY ./.app-config.clj $HOME/.olimcc-app/app-config.clj
 RUN lein ring uberjar
 
 # Clean things we don't need
-RUN rm /root/.lein/self-installs/leiningen-2.5.3-standalone.jar
+#RUN rm /root/.lein/self-installs/leiningen-2.5.3-standalone.jar
+#RUN rm /root/.lein/self-installs/leiningen-2.5.3-standalone.jar
 RUN rm -rf /root/.m2/repository/
+
+EXPOSE 80
 
 # Run the app
 CMD ["java", "-jar", "/app/target/olimcc-0.1.0-SNAPSHOT-standalone.jar"]

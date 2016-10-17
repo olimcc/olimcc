@@ -1,0 +1,19 @@
+sudo: required #is required to use docker service in travis
+
+language: python
+
+services:
+  - docker
+
+install:
+  - echo "install nothing!" # put your normal pre-testing installs here
+
+after_success:
+  - docker --version
+  - pip install --user awscli
+  - export PATH=$PATH:$HOME/.local/bin
+  - aws s3 cp s3://com.olimcc/config.clj ./.app-config.clj
+  - eval $(aws ecr get-login --region us-east-1) 
+  - docker build -t olimcc-app .
+  - docker tag olimcc-app:latest $AWS_ECS_REPOSITORY/olimcc-app:latest
+  - docker push $AWS_ECS_REPOSITORY/olimcc-app:latest

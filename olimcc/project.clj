@@ -13,11 +13,14 @@
                                                     com.sun.jmx/jmxri]]
                  [ring.middleware.logger "0.5.0"]
                  [cheshire "5.5.0"]
-                 [org.xerial/sqlite-jdbc "3.7.2"]]
+                 [org.xerial/sqlite-jdbc "3.7.2"]
+                 [mysql/mysql-connector-java "5.1.40"]
+                 ]
   :plugins [[lein-ring "0.9.7"]]
   :ring {:init olimcc.handler/init
          :handler olimcc.handler/app
-         :port 8080}
+         :port 80}
+  :jvm-opts ["-Xmx4g" "-server"]
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
                         [ring/ring-mock "0.3.0"]]
