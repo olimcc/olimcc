@@ -20,4 +20,4 @@ after_success:
   - eval $(aws ecr get-login --region us-east-1)
   - docker build -t olimcc-app .
   - docker tag olimcc-app:latest $AWS_ECS_REGISTRY/olimcc-app:latest
-  - docker push $AWS_ECS_REGISTRY/olimcc-app:latest
+  - docker push $AWS_ECS_REGISTRY/olimcc-app:latest > /dev/null
