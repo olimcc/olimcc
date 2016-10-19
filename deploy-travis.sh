@@ -1,9 +1,12 @@
 pip install awscli
 PATH=$PATH:$HOME/.local/bin
 
+#TRAVIS_BRANCH='test-branch'
+#TRAVIS_COMMIT='test-commit'
+#AWS_ECS_REGISTRY='ecs-reg'
 
 cd olimcc
-aws s3 cp $APP_CONFIG_FILE ./.app-config.clj
+#aws s3 cp $APP_CONFIG_FILE ./.app-config.clj
 IMAGE_NAME=olimcc-app
 DATE=`date +%Y-%m-%d.%H%M%S`
 IMAGE_TAG=$DATE-$TRAVIS_BRANCH.$TRAVIS_COMMIT

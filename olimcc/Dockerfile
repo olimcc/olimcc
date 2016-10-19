@@ -10,6 +10,9 @@ RUN apk add wget
 ENV LEIN_VERSION=2.5.3
 ENV LEIN_INSTALL=/usr/local/bin/
 
+ARG GIT_COMMIT
+ENV GIT_COMMIT ${GIT_COMMIT}
+
 WORKDIR /tmp
 
 RUN mkdir -p $LEIN_INSTALL \
