@@ -11,13 +11,10 @@ install:
 script:
   - echo "no tests!"
 
-after_success:
-  - cd olimcc
-  - docker --version
-  - pip install awscli
-  - export PATH=$PATH:$HOME/.local/bin
-  - aws s3 cp $APP_CONFIG_FILE ./.app-config.clj
-  - eval $(aws ecr get-login --region us-east-1)
-  - docker build -t olimcc-app .
-  - docker tag olimcc-app:latest $AWS_ECS_REGISTRY/olimcc-app:latest
-  - docker push $AWS_ECS_REGISTRY/olimcc-app:latest > /dev/null
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: deploy-travis.sh
+  
+  #on:
+  #  tags: true
