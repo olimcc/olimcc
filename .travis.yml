@@ -11,10 +11,7 @@ install:
 script:
   - echo "no tests!"
 
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: deploy-travis.sh
-  
-  #on:
-  #  tags: true
+after_success:
+  - pwd
+  - ls
+  - deploy-travis.sh
