@@ -10,6 +10,7 @@ if [ -z "$TRAVIS_TAG" ]; then
 else
 
     echo $GCLOUD_SERVICE_KEY | base64 --decode -i > gcloud-service-key.json
+    echo gcloud-service-key.json
     gcloud auth activate-service-account --key-file gcloud-service-key.json
     gcloud auth configure-docker --quiet
 
