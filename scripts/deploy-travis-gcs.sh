@@ -9,8 +9,8 @@ if [ -z "$TRAVIS_TAG" ]; then
     echo "will not build, no git tag"
 else
 
-    echo $GCLOUD_SERVICE_KEY | base64 --decode -i > ${HOME}/gcloud-service-key.json
-    gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
+    echo $GCLOUD_SERVICE_KEY | base64 --decode -i > gcloud-service-key.json
+    gcloud auth activate-service-account --key-file gcloud-service-key.json
     gcloud auth configure-docker --quiet
 
     cd olimcc
