@@ -5,13 +5,17 @@ language: python
 services:
   - docker
 
+cache:
+  directories:
+    - "$HOME/google-cloud-sdk/"
+
 install:
-  - echo "install nothing!" # put your normal pre-testing installs here
+  - echo "install nothing!"
 
 script:
   - echo "no tests!"
 
 after_success:
-  - pwd
-  - ls
-  - ./deploy-travis.sh
+  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; curl https://sdk.cloud.google.com | bash; fi
+  - source /home/travis/google-cloud-sdk/path.bash.inc
+  - bash scripts/deploy-travis-gch.sh
