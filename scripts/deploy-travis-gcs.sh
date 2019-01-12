@@ -3,7 +3,6 @@ IMAGE_NAME=olimcc-app
 REGISTRY=gcr.io/$PROJECT_ID
 GIT_BRANCH=$(git symbolic-ref --short -q HEAD)
 GIT_HEAD=$(git rev-parse --short HEAD)
-TRAVIS_TAG=test
 
 set -e
 
