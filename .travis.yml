@@ -18,5 +18,5 @@ script:
 after_success:
   - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; curl https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-229.0.0-linux-x86_64.tar.gz > google-cloud-sdk.tar.gz ; fi
   - tar -xzf google-cloud-sdk.tar.gz
-  - source /home/travis/google-cloud-sdk/path.bash.inc
-  - bash scripts/deploy-travis-gch.sh
+  - source $HOME/google-cloud-sdk/path.bash.inc
+  - bash scripts/deploy-travis-gcs.sh
