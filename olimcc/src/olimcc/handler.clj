@@ -30,7 +30,7 @@
                                 (jdbc/create-table-ddl table-name
                                                        [:lat :real]
                                                        [:lng :real]
-                                                       [:timestamp :integer]
+                                                       [:timestamp :bigint]
                                                        [:note :text]))
            (catch Exception e (println e)))
       (log/infof "table %s already exists, will not create" table-name))))
@@ -73,11 +73,20 @@
   (GET "/location" [] location-handler)
   (route/not-found "Not Found"))
 
+(defn get-app-spec
+    []
+    {:db-spec
+     {:dbtype "mysql"
+      :dbname (System/getenv "DB_NAME")
+      :user (System/getenv "DB_USER")
+      :password (System/getenv "DB_PASSWORD")
+      :host (System/getenv "DB_HOST")
+      :port (or (System/getenv "DB_PORT") 3306)}})
+
 (defn init
   "Initialize the app. Called once at startup."
   []
-  (let [app-cfg-loc (str "./.app-config.clj")
-        app-spec (load-file app-cfg-loc)]
+  (let [app-spec (get-app-spec)]
     (reset! db-spec (:db-spec app-spec))
     (create-db (:db-spec app-spec))))
 
