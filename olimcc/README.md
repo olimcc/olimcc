@@ -1,15 +1,61 @@
-Crude running of unversioned docker container:
 
-    ./build.sh
-    scp target/olimcc-app.docker.tgz some-host:
+### Kube deploy
 
-To install (on host):
+Configure project wide settings
 
-    mkdir olimcc-app-data # only the first time
-    gunzip olimcc-app.docker.tgz
-    docker load -i olimcc-app.docker.tar
-    docker run -d -v ~/olimcc-app-data/:/root/olimcc-app-data/ -p 8080:8080 olimcc-app
+    gcloud config set project already-behind-schedule
+    gcloud config set compute/zone us-central1-b
 
-To clean up old images:
+Create cluster
 
-    docker rmi -f $(docker images -f "dangling=true" -q)
+    gcloud container clusters create <cluster name> \
+        --num-nodes 1 \
+        --zone us-central1-b \
+        --enable-ip-alias \
+        --enable-autoupgrade \
+        --machine-type g1-small
+
+Obtain cluster credentials
+
+    gcloud container clusters get-credentials <cluster name>
+
+Add secrets for DB access
+
+    kubectl create secret generic olimccdb \
+        --from-literal user=<user> \
+        --from-literal password=<pw> \
+        --from-literal dbname=<db> \
+        --from-literal host=<hn>
+
+Create deployment
+
+    kubectl apply -f deployment.yaml
+
+Create load balancer
+
+    kubectl apply -f lb-service.yaml
+
+List services to find external IP
+
+    kubectl get services
+    NAME                TYPE           CLUSTER-IP   EXTERNAL-IP     PORT(S)        AGE
+    ...
+
+### Release
+
+Push a tag, builds on [travis](https://travis-ci.org/olimcc/olimcc), deploys to GCS repository.
+
+    git tag -a v0.2.3 -m "0.2.3"
+    git push origin v0.2.3
+
+Bump image version in deployment.yaml, then:
+
+    kubectl apply -f deployment.yaml
+
+### Local exec
+
+
+    docker build -t olimcc-app:latest .
+
+    # env-file.txt with DB_USER, DB_PASSWORD, DB_NAME, DB_HOST
+    docker run -it --env-file ./env-file.txt -p 8111:80 olimcc-app:latest

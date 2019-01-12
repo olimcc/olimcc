@@ -1,0 +1,40 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: olimcc-web-deployment
+spec:
+  selector:
+    matchLabels:
+      app: olimcc-web
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: olimcc-web
+    spec:
+      containers:
+      - name: olimcc-web-container
+        image: gcr.io/already-behind-schedule/olimcc-app:v0.7.4-667e730-20190112231020
+        ports:
+        - containerPort: 80
+        env:
+            - name: DB_USER
+              valueFrom:
+                  secretKeyRef:
+                      name: olimccdb
+                      key: user
+            - name: DB_PASSWORD
+              valueFrom:
+                  secretKeyRef:
+                      name: olimccdb
+                      key: password
+            - name: DB_NAME
+              valueFrom:
+                  secretKeyRef:
+                      name: olimccdb
+                      key: dbname
+            - name: DB_HOST
+              valueFrom:
+                  secretKeyRef:
+                      name: olimccdb
+                      key: host
