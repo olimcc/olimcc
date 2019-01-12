@@ -16,8 +16,8 @@ else
     gcloud auth configure-docker --quiet
 
     cd olimcc
-    DATE=`date +%Y%m%d.%H%M%S`
-    IMAGE_TAG=$DATE-$GIT_BRANCH.$GIT_HEAD
+    DATE=`date '+%Y%m%d%H%M%S'`
+    IMAGE_TAG=$GIT_BRANCH-$GIT_HEAD-$DATE
 
     echo "building" $IMAGE_NAME:$IMAGE_TAG
     docker build --build-arg GIT_COMMIT=$GIT_HEAD -t $IMAGE_NAME:$IMAGE_TAG .
