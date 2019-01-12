@@ -200,7 +200,7 @@ el.addEventListener('click', function(){
 });
 
 var exec = function(start, limit) {
-  var dest = start ? "http://olimcc.com/location?start=" + start + '&' : "http://olimcc.com/location?",
+  var dest = start ? "/location?start=" + start + '&' : "/location?",
     dest = limit ? dest + 'limit=' + limit : dest;
   d3.json(dest, function(error, json) {
     if (json.length > 1) {
