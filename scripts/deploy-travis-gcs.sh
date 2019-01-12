@@ -1,6 +1,6 @@
-PROJECT_NAME=olimcc-com
+PROJECT_ID=already-behind-schedule
 IMAGE_NAME=olimcc-app
-REGISTRY=gcr.io/$PROJECT_NAME
+REGISTRY=gcr.io/$PROJECT_ID
 GIT_BRANCH=$(git symbolic-ref --short -q HEAD)
 GIT_HEAD=$(git rev-parse --short HEAD)
 TRAVIS_TAG=test
