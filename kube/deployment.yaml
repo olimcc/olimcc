@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: olimcc-web-container
-        image: gcr.io/already-behind-schedule/olimcc-app:v0.8.1-5d9ce20-20200121021013
+        image: gcr.io/already-behind-schedule/olimcc-app:v0.8.2-766889d-20200121181437
         ports:
         - containerPort: 80
         env:
