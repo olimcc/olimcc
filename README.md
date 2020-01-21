@@ -48,6 +48,12 @@ Push a tag, builds on [travis](https://travis-ci.org/olimcc/olimcc), deploys to 
     git tag -a v0.2.3 -m "0.2.3"
     git push origin v0.2.3
 
+Reset to appropriate project
+
+    gcloud config set project <>
+    gcloud config set compute/zone <>
+    gcloud container clusters get-credentials <>
+
 Bump image version in deployment.yaml, then:
 
     kubectl apply -f deployment.yaml
