@@ -16,7 +16,7 @@
                  [org.xerial/sqlite-jdbc "3.7.2"]
                  [mysql/mysql-connector-java "5.1.40"]
                  ]
-  :plugins [[lein-ring "0.9.7"]]
+  :plugins [[lein-ring "0.12.5"]]
   :ring {:init olimcc.handler/init
          :handler olimcc.handler/app
          :port 80}
